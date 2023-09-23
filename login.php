@@ -6,7 +6,7 @@ $pass = $_POST["pass"];
 
 if (empty($login) || empty($pass)) 
 {
-    echo "fill in all the fields";
+    echo "Fill in all the fields";
 } else {
     $sql = "SELECT * FROM `users` WHERE login = ? AND pass = ?";
     $stmt = $conn->prepare($sql);
@@ -18,7 +18,7 @@ if (empty($login) || empty($pass))
     if ($result->num_rows > 0)
     {
         while($row = $result->fetch_assoc()){
-            echo "welcome " . $row['login'];
+            echo "Welcome " . $row['login'];
         } 
-    }else echo "invalid login or password";
+    }else echo "Invalid login or password";
 }
