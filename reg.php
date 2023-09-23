@@ -10,13 +10,15 @@ if (empty($login) || empty($pass) || empty($repedpass) || empty($email)){
 } else
 {
 if ($pass != $repedpass) {          
-    echo "Password mismatch";
+    echo "password mismatch";
 } else {
-    $sql = "INSERT INTO `users` (login, pass, email) VALUES ('$login','$pass', '$email') ";
-    if ( $conn -> query($sql) === true) {
+    $sql = "INSERT INTO `users` (login, pass, email) VALUES (?, ?, ?) ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $login, $pass, $email);
+    if ($stmt->execute()) {
         echo "successful registration";
-    } else "error:" . $conn -> error;
-    
+    } else  echo "error:" . $stmt->error;
+    $stmt->close();    
 
 }
 }
