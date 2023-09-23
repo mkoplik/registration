@@ -10,7 +10,7 @@
         <input type="text" name="login" placeholder="enter your login"><br>
         <input type="text" name="pass" placeholder="enter your password"><br>
         <input type="text" name="repedpass" placeholder="reped your password"><br>
-        <input type="text" name="email" placeholder="enter your email"><br>
+        <input type="email" name="email" placeholder="enter your email"><br>
         <button type="submit">registration</button><br><br>
     </form>
     <form action="login.php" method="post">

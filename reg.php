@@ -11,9 +11,11 @@ if (empty($login) || empty($pass) || empty($repedpass) || empty($email)){
     if ($pass != $repedpass) {          
         echo "Password mismatch";
     } else {
+        $hashed_password = password_hash($pass, PASSWORD_BCRYPT, ['cost' => 12]);
+
         $sql = "INSERT INTO `users` (login, pass, email) VALUES (?, ?, ?) ";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $login, $pass, $email);
+        $stmt->bind_param("sss", $login, $hashed_password, $email);
         try {
             if ($stmt->execute()) {
                 echo "Successful registration";
